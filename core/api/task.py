@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from core.storage import task_storage
-from ..models.task.requests import CreateTaskRequest
-from ..models.task.responses import TaskRespons
-from ..models.task.requests import UpdateTaskRequest
+from src.core.models.task.requests import CreateTaskRequest
+from src.core.models.task.responses import TaskRespons
+from src.core.models.task.requests import UpdateTaskRequest
 
 router = APIRouter()
 

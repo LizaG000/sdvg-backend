@@ -1,8 +1,7 @@
-from database import Base
+from src.main.database import Base
 
-from sqlalchemy import Column, Integer, String, Boolean, BigInteger, NUMERIC, DATETIME, TEXT, ForeignKey
+from sqlalchemy import Column, Integer, String,  DATETIME, TEXT, ForeignKey
 from datetime import datetime
-from sqlalchemy.orm import relationship
 
 class Task(Base):
     """ """
@@ -15,5 +14,3 @@ class Task(Base):
     completed_dt = Column(DATETIME)
     date_created = Column(DATETIME, default=datetime.now())
     date_modified = Column(DATETIME, default=datetime.now())
-
-    profiles = relationship("Profile", back_populates="profile")

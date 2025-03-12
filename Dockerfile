@@ -6,8 +6,8 @@ ENV PROJECT_PATH=/app
 # создание папки, в которой будет последующая работа
 WORKDIR $PROJECT_PATH
 
-RUN pip install -r requirements.txt
+COPY . .
 
-COPY src/ . 
+RUN pip install -r requirements.txt
 
 CMD ["python", "main.py"]
