@@ -35,7 +35,7 @@ class ProfileStorage(BaseStorage):
                                          email=d.email)
     
     async def get_profiles(self) -> list[GetProfilesResponse]:
-        stmt_select = text("SELECT id, phone, username, password, email, date_created, date_modified, balance, del AS del_ FROM profile")
+        stmt_select = text("SELECT id, phone, username, password, email, date_created, date_modified, balance, is_del FROM profile")
         async with self.get_session() as session:
             session: AsyncSession
             result = await session.execute(stmt_select)
@@ -50,7 +50,7 @@ class ProfileStorage(BaseStorage):
                     date_created = row.date_created,
                     date_modified = row.date_modified,
                     balance = row.balance,
-                    del_ = row.del_
+                    is_del = row.is_del
                 )
                 for row in rows
             ]
@@ -58,7 +58,7 @@ class ProfileStorage(BaseStorage):
     
     async def get_one_profile(self, profile: GetOneProfileRequest) -> GetOneProfileRespons:
         stmt_select = text("""
-                SELECT phone, username, email, date_modified, password, balance, del as del_
+                SELECT phone, username, email, date_modified, password, balance, is_del
                 FROM profile
                 WHERE phone = :phone OR email = :email
                 limit 1
@@ -81,7 +81,7 @@ class ProfileStorage(BaseStorage):
                     email = result.email,
                     date_modified = result.date_modified,
                     balance = result.balance,
-                    del_ = result.del_
+                    is_del = result.is_del
                     )
             else:
                 raise HTTPException(status_code=422, detail="Неверно введен пароль")
@@ -89,7 +89,7 @@ class ProfileStorage(BaseStorage):
     async def update_del_profile(self, profile: GetOneProfileRequest) -> bool:
         stmt = text("""
             UPDATE profile
-            SET del=True, date_modified = :date_modified
+            SET is_deleted=True, date_modified = :date_modified
             WHERE (phone = :phone OR email = :email) and password = :password
         """)
 

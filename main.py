@@ -1,8 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from loguru import logger
 
-from config import Config
+from config import settings
+# from config import Config
+# from config import AuthCOnfig
 
 from core.api import router as api_router
 
@@ -31,4 +34,8 @@ def root():
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', host=str(Config.host), port=Config.port)
+    logger.info(settings.auth.access_token_expire_minutes)
+    logger.info(settings.auth.algorithm)
+    logger.info(settings.auth.private_key_path)
+    logger.info(settings.auth.public_key_path)
+    uvicorn.run('main:app', host=str(settings.backend.host), port=settings.backend.port)

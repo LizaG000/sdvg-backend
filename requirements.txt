@@ -73,3 +73,4 @@ typing-extensions==4.9.0
     #   uvicorn
 uvicorn==0.24.0.post1
     # via -r requirements.in
+toml

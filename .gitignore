@@ -32,3 +32,4 @@ archive.zip
 .DS_Store
 private.pem
 public.pem
+config.toml
