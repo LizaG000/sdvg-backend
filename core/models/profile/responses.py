@@ -11,9 +11,7 @@ class GetProfilesResponse(BaseModel):
     id: int
     phone: int
     username: str
-    password: str
     email: EmailStr
-    date_created: datetime
     date_modified: datetime
     balance: float
     is_del: bool

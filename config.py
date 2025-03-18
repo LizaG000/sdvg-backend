@@ -1,4 +1,5 @@
-import toml  # или tomllib в Python 3.11+
+import toml
+from pathlib import Path
 from pydantic import BaseModel
 
 class BackendSettings(BaseModel):
@@ -9,8 +10,8 @@ class DatabaseSettings(BaseModel):
     postgres_url: str
 
 class AuthSettings(BaseModel):
-    private_key_path: str
-    public_key_path: str
+    private_key_path: Path
+    public_key_path: Path
     algorithm: str
     access_token_expire_minutes: int
 

@@ -34,8 +34,4 @@ def root():
 
 
 if __name__ == '__main__':
-    logger.info(settings.auth.access_token_expire_minutes)
-    logger.info(settings.auth.algorithm)
-    logger.info(settings.auth.private_key_path)
-    logger.info(settings.auth.public_key_path)
-    uvicorn.run('main:app', host=str(settings.backend.host), port=settings.backend.port)
+    uvicorn.run('main:app', host=str(settings.backend.host), port=settings.backend.port, reload=True)
