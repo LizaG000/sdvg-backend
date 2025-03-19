@@ -11,12 +11,10 @@ class GetProfilesResponse(BaseModel):
     id: int
     phone: int
     username: str
-    password: str
     email: EmailStr
-    date_created: datetime
     date_modified: datetime
     balance: float
-    del_: bool
+    is_del: bool
 
 class GetOneProfileRespons(BaseModel):
     phone: int
@@ -24,4 +22,4 @@ class GetOneProfileRespons(BaseModel):
     email: str
     date_modified: datetime
     balance: int
-    del_: bool
+    is_del: bool

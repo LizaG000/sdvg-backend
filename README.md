@@ -24,3 +24,13 @@ If you have some troubles please contact me
 Ernest Litvinenko
 <a href="mailto:ernest@elitvinenko.tech">ernest@elitvinenko.tech</a>
 TG: @ernestlitvinenko
+
+## Generation of a private key.
+```bash
+openssl genrsa -out private.pem 2048
+```
+
+## Generation of a public key.
+```bash
+openssl rsa -in private.pem -pubout -out public.pem
+```

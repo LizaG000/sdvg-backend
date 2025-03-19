@@ -4,7 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, async_sessionmaker
-from config import Config
+from config import settings
 from loguru import logger
 
 
@@ -14,7 +14,7 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 
 engine = create_async_engine(
-    str(Config.postgres_url),
+    settings.database.postgres_url,
     pool_size=20,
     max_overflow=0,
     pool_pre_ping=True)

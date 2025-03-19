@@ -1,22 +1,26 @@
-from pydantic import IPvAnyAddress, PostgresDsn, EmailStr, AnyUrl
-from pydantic_settings import BaseSettings
+import toml
+from pathlib import Path
+from pydantic import BaseModel
 
+class BackendSettings(BaseModel):
+    host: str
+    port: int
 
-class Settings(BaseSettings):
-    host: IPvAnyAddress
-    port: int = 8000
-    secret: str  # openssl rand -hex 32
-    postgres_url: PostgresDsn
-    token_lifetime: int = 15
-    system_username: str = 'admin'
-    system_pwd: str = 'admin'
-    system_email: EmailStr = 'ernest@elitvinenko.tech'
-    domain: str
-    static_url: str = ""
+class DatabaseSettings(BaseModel):
+    postgres_url: str
 
-    class Config:
-        env_file = '.env'
+class AuthSettings(BaseModel):
+    private_key_path: Path
+    public_key_path: Path
+    algorithm: str
+    access_token_expire_minutes: int
 
+class Settings(BaseModel):
+    backend: BackendSettings
+    database: DatabaseSettings
+    auth: AuthSettings
 
+with open("config.toml", "r", encoding="utf-8") as f:
+    config_data = toml.load(f)
 
-Config = Settings()
+settings = Settings(**config_data)

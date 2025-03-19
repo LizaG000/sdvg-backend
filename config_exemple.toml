@@ -1,0 +1,12 @@
+[backend]
+host = "0.0.0.0"
+port = 8000
+
+[database]
+postgres_url = ""
+
+[auth]
+private_key_path = "settings/private.pem"
+public_key_path = "settings/public.pem"
+algorithm = "RS256"
+access_token_expire_minutes = 95
